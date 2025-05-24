@@ -5,17 +5,18 @@ To Write a c program to find the largest value in a Binary Search Tree.
 
 ## Algorithm
 
-1.Start the program and define a node structure with data and pointers to left and right children.
+1.Start the program.
 
-2.Create a function createnode to allocate memory, initialize the node with a key, and set children to NULL.
+2.Define a function largest() that takes a pointer to a binary tree node as input.
 
-3.Build the binary search tree by creating nodes and linking them to form the correct structure.
+3.Inside the function, check if the current node has a right child.
 
-4.Define an inorder function to recursively traverse the tree in-order and print each node’s value.
+4.If it does, recursively call the largest() function on the right child to keep moving right.
 
-5.Define a largest function to find and print the maximum value by moving to the rightmost node.
+5.If the current node has no right child, return its value as it is the largest in the binary search tree.
 
-6.In main, construct the tree, call inorder to display nodes, then call largest to show the largest element, and finally end the program.
+6.End the program.
+
 
 
 ## Program:
@@ -26,59 +27,21 @@ Developed by: Shree Lekha.S
 RegisterNumber: 212223110052 
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-struct node
+#include<stdio.h>
+int largest(struct btnode *t)
 {
-int info;
-struct node *left, *right;
-};
-struct node *createnode(int key)
-{
-struct node*newnode = (struct node*)malloc(sizeof(struct node));
-newnode->info = key;
-newnode->left = NULL;
-newnode->right = NULL;
-return(newnode);
-}
-void inorder(struct node *root)
-{
-if(root != NULL)
-{
-inorder(root->left);
- printf(" %d ",root->info);
-inorder(root->right);
-}
-}
-void largest(struct node *root)
-{
-while (root != NULL && root->right != NULL)
-{
-root = root->right;
-}
-printf("\nLargest value is %d", root->info);
-}
- 
-int main()
-{
-/* Creating first Tree. */
-struct node *newnode = createnode(25);
- newnode->left = createnode(17);
- newnode->right = createnode(35);
-newnode->left->left = createnode(13);
- newnode->left->right = createnode(19);
- newnode->right->left = createnode(27);
- newnode->right->right =createnode(55);
-
-printf("Inorder traversal of tree 1 :");
-inorder(newnode);
-largest(newnode);
-return 0;
+   if (t->r != NULL)
+   {
+       t2 = t;
+       return(largest(t->r));
+   }
+   else   
+       return(t->value);
 }
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/a5553ce6-a3b0-4198-be77-881580206f21)
+![image](https://github.com/user-attachments/assets/d58b7b30-4d57-45ed-8c6f-05377c22ad90)
 
 
 ## Result:
